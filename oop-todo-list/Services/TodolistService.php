@@ -3,6 +3,7 @@
 namespace Services
 {
 
+    use Entity\Todolist;
     use Repository\TodolistRepository;
 
     interface TodolistService
@@ -29,18 +30,24 @@ namespace Services
             $todoList = $this->todolistRepository->findAll();
             foreach ($todoList as $number => $value)
             {
-                echo "$number. $value" . PHP_EOL;
+                echo "$number." . $value->getTodo() . PHP_EOL;
             }
         }
 
         function addTodolist(string $todo): void
         {
-            // TODO: Implement addTodolist() method.
+            $todolist = new Todolist($todo);
+            $this->todolistRepository->save($todolist);
+            echo "SUKSES MENAMBAH TODOLIST" . PHP_EOL;
         }
 
         function removeTodolist(int $number): void
         {
-            // TODO: Implement removeTodolist() method.
+            if ($this->todolistRepository->remove($number)) {
+                echo "SUKES MENGHAPUS TODOLIST" . PHP_EOL;
+            } else {
+                echo "GAGAL MENGHAPUS TODOLIST" . PHP_EOL;
+            }
         }
     }
 
