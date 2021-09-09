@@ -24,7 +24,7 @@ namespace View
                 echo "2. Hapus Todo" . PHP_EOL;
                 echo "x. Keluar" . PHP_EOL;
 
-                $pilihan = InputHelper::input("Pilihan :");
+                $pilihan = InputHelper::input("Pilihan");
 
                 if ($pilihan == "1") {
                     $this->addTodolist();
